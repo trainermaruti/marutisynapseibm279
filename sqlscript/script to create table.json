@@ -1,0 +1,17 @@
+{
+	"name": "script to create table",
+	"properties": {
+		"content": {
+			"query": "CREATE TABLE OrdersPartition\n(      OrderID int IDENTITY(1,1) NOT NULL\n,OrderDate datetime NOT NULL\n,OrderDescription char(15) DEFAULT 'NewOrder'  )\nWITH  \n(     CLUSTERED COLUMNSTORE INDEX,\nDISTRIBUTION = ROUND_ROBIN,\nPARTITION       (        OrderDate RANGE RIGHT FOR VALUES         \n(           '2017-02-05T00:00:00.000'\n, '2017-02-12T00:00:00.000'\n, '2017-02-19T00:00:00.000'\n, '2017-02-26T00:00:00.000'\n, '2017-03-05T00:00:00.000'\n, '2017-03-12T00:00:00.000'\n, '2017-03-19T00:00:00.000'   )\n)\n\n);\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "marutidpool935",
+				"poolName": "marutidpool935"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

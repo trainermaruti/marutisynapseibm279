@@ -1,0 +1,17 @@
+{
+	"name": "SQL script dataexploration",
+	"properties": {
+		"content": {
+			"query": "CREATE EXTERNAL DATA SOURCE MarutiDataLake\nWITH ( LOCATION = 'https://marutigen2dl.blob.core.windows.net')\n\n\nSELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n            BULK '/marutifscontainer/NYCTripSmall.parquet',\n            DATA_SOURCE = 'MarutiDataLake',\n            FORMAT='PARQUET'\n    ) AS [result]\n\nCREATE LOGIN data_explorer WITH PASSWORD = 'makwana@1234';\nCREATE USER data_explorer FOR LOGIN data_explorer; GO GRANT ADMINISTER DATABASE BULK OPERATIONS TO data_explorer; ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "DataExplorationDB",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

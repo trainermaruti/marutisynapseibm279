@@ -1,0 +1,17 @@
+{
+	"name": "script for understanding",
+	"properties": {
+		"content": {
+			"query": "SELECT   o.name AS Table_name,  pnp.partition_number AS Partition_number,  sum(pnp.rows) \nAS Row_count  FROM sys.pdw_nodes_partitions AS pnp     \nJOIN sys.pdw_nodes_tables AS NTables ON pnp.object_id = NTables.object_id       \nAND pnp.pdw_node_id = NTables.pdw_node_id     \nJOIN sys.pdw_table_mappings AS TMap ON NTables.name = TMap.physical_name      \n AND substring(TMap.physical_name,40, 10) = pnp.distribution_id    \n JOIN sys.objects AS o ON TMap.object_id = o.object_id    \n WHERE o.name in ('OrdersPartition')   \n GROUP BY partition_number, o.name, pnp.data_compression_desc;\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "marutidpool935",
+				"poolName": "marutidpool935"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

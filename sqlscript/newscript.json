@@ -1,0 +1,17 @@
+{
+	"name": "newscript",
+	"properties": {
+		"content": {
+			"query": "CREATE TABLE dbo.Orders_Staging   (OrderID int IDENTITY(1,1) NOT NULL   ,\nOrderDate datetime NOT NULL   ,OrderDescription char(15) DEFAULT 'NewOrder'   ) \n\nALTER TABLE dbo.OrdersPartition SWITCH PARTITION 3 to dbo.Orders_Staging \n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "marutidpool935",
+				"poolName": "marutidpool935"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
